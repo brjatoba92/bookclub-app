@@ -1,4 +1,5 @@
-import { Flex, Image, Text, Input, Button, Link } from '@chakra-ui/react'
+import { Flex, Image } from '@chakra-ui/react'
+import { Text, Input, Link, Button} from 'components'
 
 export const LoginScreen = () => {
     return(
@@ -19,14 +20,19 @@ export const LoginScreen = () => {
                   alt='logo'
                 />
                 <Flex w='416px' flexDir='column'>
-                  <Text marginTop='48px' fontSize='20px' fontWeight='800'>Login</Text>
-                  <Input marginTop='24px' placeholder="email@email.com"/>
-                  <Input marginTop='16px' placeholder="********"/>
-                  <Link marginTop='24px' fontSize='14px'> Forgot password</Link>
-                <Button marginTop='24px' >Login</Button>
-                <Link marginTop='48px' fontSize='16px'>No have an account? Register here</Link>
+                  <Text.ScreenTitle marginTop='48px'>Login</Text.ScreenTitle>
+                  <Input mt='24px' placeholder="email@email.com"/>
+                  <Input.Password mt='16px' placeholder="********"/>
+                  <Flex mt='24px' w='100%' alignItems='flex-end' justifyContent='flex-end'>
+                    <Link> Forgot password</Link>
+                  </Flex>
+                  <Button mt='24px' >Login</Button>
+                  <Link.Action
+                    mt='48px'
+                    text='No have account? '
+                    actionText='Register here'
+                  />
                 </Flex>
-                
             </Flex>
             <Flex
               w='60%'
