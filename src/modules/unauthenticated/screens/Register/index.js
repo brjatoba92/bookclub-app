@@ -30,10 +30,10 @@ export const RegisterScreen = () => {
                   <Input mt='16px' placeholder="E-mail"/>
                   <Input.Password mt='16px' placeholder="Password"/>
                   <Input.Password mt='16px' placeholder="Confirm Password"/>
-                  <Button mt='24px' >Register</Button>
+                  <Button mt='24px' mb='12px' >Register</Button>
                   <Link.Action
                     onClick = {() => navigate('/')}
-                    mt='48px'
+                    mt='8px'
                     text='You have account? '
                     actionText='Make login here'
                   />

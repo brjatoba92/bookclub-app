@@ -1,9 +1,9 @@
 import { Flex, Image } from '@chakra-ui/react'
 import { Text, Input, Link, Button} from 'components'
-import { useNavigate } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom'
 
-export const LoginScreen = () => {
-  const navigate = useNavigate()
+export const ResetPasswordScreen = () => {
+  // const navigate = useNavigate()
     return(
         <Flex w='100vw' h='100vh' flexDir='row'>
             <Flex
@@ -25,19 +25,18 @@ export const LoginScreen = () => {
                   w={['100%','100%', '100%','100%', '416px']}
                   flexDir='column'
                 >
-                  <Text.ScreenTitle marginTop='48px'>Login</Text.ScreenTitle>
-                  <Input mt='24px' placeholder="email@email.com"/>
-                  <Input.Password mt='16px' placeholder="********"/>
-                  <Flex mt='24px' w='100%' alignItems='flex-end' justifyContent='flex-end'>
-                    <Link onClick = {() => navigate('/forgot-password')}> Forgot password</Link>
-                  </Flex>
-                  <Button mt='24px' mb='12px' >Login</Button>
+                  <Text.ScreenTitle marginTop='48px'>New Password</Text.ScreenTitle>
+                  <Text mt='24px'>Digite o código enviado e uma nova senha  nos campos abaixo:</Text>
+                  <Input mt='24px' placeholder="Token"/>
+                  <Input.Password mt='24px' placeholder="New Password"/>
+                  <Input.Password mt='24px' placeholder="Confirm New Password"/>
+                  <Button mt='24px' mb='12px' >Save</Button>
                   <Link.Action
-                    onClick = {() => navigate('/signup')}
+                    // onClick = {() => navigate('/signup')}
                     mt='8px'
-                    text='No have account? '
-                    actionText='Register here'
-                  />
+                    text='No have token? '
+                    actionText='Click to resend'
+                />
                 </Flex>
             </Flex>
             <Flex
