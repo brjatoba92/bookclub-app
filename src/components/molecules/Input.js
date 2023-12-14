@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Text } from 'components/atoms/Text'
 
 import { Input as ChakraInput,
     InputGroup, 
@@ -8,14 +9,24 @@ import { Input as ChakraInput,
 
 import {ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
 
-export const Input = ( props ) =>(
-  <ChakraInput h='56px' fontSize='16px' focusBorderColor='brand.primary' { ...props } />
+export const Input = (props) =>(
+  <>
+    <ChakraInput
+      h='56px'
+      fontSize='16px'
+      focusBorderColor='brand.primary'
+      {...props}
+    />
+    {props.error && <Text color='red'>{props.error}</Text>}
+  </>
+  
 )
 
 Input.Password = ({value, onChange, id, name, ...props}) => {
     const [show, setShow] = useState(false)
     const handleClick = () => setShow(!show)
     return(
+      <>
       <InputGroup
         display='flex'
         alignItems='center'
@@ -52,8 +63,10 @@ Input.Password = ({value, onChange, id, name, ...props}) => {
               <ViewOffIcon  boxSize='18px' color='brand.primary'/>
             )}
           </Button>
-        </InputRightElement>  
+        </InputRightElement>
       </InputGroup>
+      {props.error && <Text color='red'>{props.error}</Text>}
+      </>
     ) 
 }
 
