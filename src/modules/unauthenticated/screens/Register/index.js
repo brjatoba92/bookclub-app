@@ -2,8 +2,8 @@ import { Flex, Image } from '@chakra-ui/react'
 import { Text, Input, Link, Button} from 'components'
 import { useNavigate } from 'react-router-dom'
 
-export const LoginScreen = () => {
-  const navigate = useNavigate()
+export const RegisterScreen = () => {
+    const navigate = useNavigate()
     return(
         <Flex w='100vw' h='100vh' flexDir='row'>
             <Flex
@@ -25,18 +25,17 @@ export const LoginScreen = () => {
                   w={['100%','100%', '100%','100%', '416px']}
                   flexDir='column'
                 >
-                  <Text.ScreenTitle marginTop='48px'>Login</Text.ScreenTitle>
-                  <Input mt='24px' placeholder="email@email.com"/>
-                  <Input.Password mt='16px' placeholder="********"/>
-                  <Flex mt='24px' w='100%' alignItems='flex-end' justifyContent='flex-end'>
-                    <Link> Forgot password</Link>
-                  </Flex>
-                  <Button mt='24px' >Login</Button>
+                  <Text.ScreenTitle marginTop='48px'>Registre</Text.ScreenTitle>
+                  <Input mt='24px' placeholder="Your Name"/>
+                  <Input mt='16px' placeholder="E-mail"/>
+                  <Input.Password mt='16px' placeholder="Password"/>
+                  <Input.Password mt='16px' placeholder="Confirm Password"/>
+                  <Button mt='24px' >Register</Button>
                   <Link.Action
-                    onClick = {() => navigate('/signup')}
+                    onClick = {() => navigate('/')}
                     mt='48px'
-                    text='No have account? '
-                    actionText='Register here'
+                    text='You have account? '
+                    actionText='Make login here'
                   />
                 </Flex>
             </Flex>
