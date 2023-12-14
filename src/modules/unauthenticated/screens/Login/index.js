@@ -5,8 +5,7 @@ export const LoginScreen = () => {
     return(
         <Flex w='100vw' h='100vh' flexDir='row'>
             <Flex
-              paddingLeft={['0px', '0px','0px', '0px' ,'112px']}
-              padding={['24px', '48px','80px', '96px' ,'0px']}
+              padding={['24px', '48px','80px', '96px', '112px']}
               alignItems={['center', 'center', 'center', 'center','flex-start']}
               justifyContent='center'
               flexDir='column'
