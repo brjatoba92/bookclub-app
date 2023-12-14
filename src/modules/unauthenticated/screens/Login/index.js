@@ -23,7 +23,7 @@ export const LoginScreen = () => {
       console.log({ data })
     }
   })
-  console.log({ values, errors })
+  // console.log({ values, errors })
 
     return(
         <Flex w='100vw' h='100vh' flexDir='row'>
@@ -46,7 +46,7 @@ export const LoginScreen = () => {
                   w={['100%','100%', '100%','100%', '416px']}
                   flexDir='column'
                 >
-                  <Text.ScreenTitle marginTop='48px'>Login</Text.ScreenTitle>
+                  <Text.ScreenTitle mt='48px'>Login</Text.ScreenTitle>
                   <Input
                     id='email'
                     name='email'
@@ -54,6 +54,7 @@ export const LoginScreen = () => {
                     mt='24px'
                     placeholder="email@exemplo.com"
                     onChange = {handleChange}
+                    error={errors.email}
                   />
                   <Input.Password
                     id='password'
@@ -62,6 +63,7 @@ export const LoginScreen = () => {
                     mt='16px'
                     placeholder="********"
                     onChange = {handleChange}
+                    error={errors.password}
                   />
                   <Flex mt='24px' w='100%' alignItems='flex-end' justifyContent='flex-end'>
                     <Link onClick = {() => navigate('/forgot-password')}> Forgot password</Link>
