@@ -12,7 +12,7 @@ export const Input = ( props ) =>(
   <ChakraInput h='56px' fontSize='16px' focusBorderColor='brand.primary' { ...props } />
 )
 
-Input.Password = (props) => {
+Input.Password = ({value, onChange, id, name, ...props}) => {
     const [show, setShow] = useState(false)
     const handleClick = () => setShow(!show)
     return(
@@ -25,6 +25,10 @@ Input.Password = (props) => {
         {...props}
       >
         <Input
+          id={id}
+          name={name}
+          onChange={onChange}
+          value={value}
           focusBorderColor='brand.primary'
           pr='4.5rem'
           fontSize='16px'
