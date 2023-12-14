@@ -5,11 +5,12 @@ export const LoginScreen = () => {
     return(
         <Flex w='100vw' h='100vh' flexDir='row'>
             <Flex
-              paddingLeft='112px'
-              alignItems='flex-start'
+              paddingLeft={['0px', '0px','0px', '0px' ,'112px']}
+              padding={['24px', '48px','80px', '96px' ,'0px']}
+              alignItems={['center', 'center', 'center', 'center','flex-start']}
               justifyContent='center'
               flexDir='column'
-              w='40%'
+              w={['100%','100%','100%','100%','40%']}
               h='100%'
             >
                 
@@ -19,7 +20,10 @@ export const LoginScreen = () => {
                   src='/imgs/logo.svg'
                   alt='logo'
                 />
-                <Flex w='416px' flexDir='column'>
+                <Flex 
+                  w={['100%','100%', '100%','100%', '416px']}
+                  flexDir='column'
+                >
                   <Text.ScreenTitle marginTop='48px'>Login</Text.ScreenTitle>
                   <Input mt='24px' placeholder="email@email.com"/>
                   <Input.Password mt='16px' placeholder="********"/>
@@ -35,7 +39,7 @@ export const LoginScreen = () => {
                 </Flex>
             </Flex>
             <Flex
-              w='60%'
+              w={['0%', '0%', '0%', '0%','60%']}
               h='100vh'
               borderTopLeftRadius='32px'
               borderBottomLeftRadius='32px'
