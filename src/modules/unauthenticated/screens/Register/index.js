@@ -3,9 +3,19 @@ import { Text, Input, Link, Button} from 'components'
 import { useNavigate } from 'react-router-dom'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
+import { useMutation } from 'react-query'
+import { registerCall } from 'services/api/requests'
 
 export const RegisterScreen = () => {
     const navigate = useNavigate()
+    const mutation = useMutation((newUser) => registerCall(newUser), {
+      onError: (error) => {
+        console.log({ error })
+      },
+      onSuccess: (data) => {
+        console.log({ data })
+      }
+    })
 
     const { handleSubmit, values, handleChange, errors} = useFormik({
       initialValues: {
@@ -24,7 +34,8 @@ export const RegisterScreen = () => {
           .oneOf([Yup.ref('password'), null], 'Senhas não são iguais')
       }),
       onSubmit: (data) => {
-        console.log({ data })
+        // console.log({ data })
+        mutation.mutate(data)
       }
     })
     // console.log({ values, errors })
@@ -89,7 +100,13 @@ export const RegisterScreen = () => {
                     onChange = {handleChange}
                     error={errors.confirmPassword}
                   />
-                  <Button mt='24px' mb='12px' onClick={handleSubmit} >Register</Button>
+                  <Button
+                    isLoading={mutation.isLoading}
+                    mt='24px' mb='12px'
+                    onClick={handleSubmit}
+                  >
+                    Register
+                  </Button>
                   <Link.Action
                     onClick = {() => navigate('/')}
                     mt='8px'
