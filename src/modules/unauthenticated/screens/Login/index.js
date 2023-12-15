@@ -5,6 +5,7 @@ import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { useMutation } from 'react-query'
 import { loginCall } from 'services/api/requests'
+import { saveItem } from 'services/storage'
 
 export const LoginScreen = () => {
   const navigate = useNavigate()
@@ -21,7 +22,7 @@ export const LoginScreen = () => {
         })
 
       },
-      onSuccess: () => {
+      onSuccess: (data) => {
         // console.log({ data })
         toast({
           title: 'Login feito com sucesso',
@@ -29,6 +30,7 @@ export const LoginScreen = () => {
           duration: 6000,
           isClosable: true,
         })
+        saveItem('@bookclub_token', data?.data?.token)
         navigate('/home')
       }
     })
