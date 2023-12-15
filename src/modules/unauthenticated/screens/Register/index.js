@@ -21,15 +21,15 @@ export const RegisterScreen = () => {
         })
 
       },
-      onSuccess: (data) => {
+      onSuccess: () => {
         // console.log({ data })
         toast({
-          title: 'Account created.',
-          description: "We've created your account for you.",
+          title: 'Conta criada',
           status: 'success',
           duration: 6000,
           isClosable: true,
         })
+        navigate('/')
       }
     })
 
