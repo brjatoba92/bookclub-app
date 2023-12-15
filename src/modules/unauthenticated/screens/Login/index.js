@@ -1,11 +1,38 @@
-import { Flex, Image } from '@chakra-ui/react'
+import { Flex, Image, useToast } from '@chakra-ui/react'
 import { Text, Input, Link, Button} from 'components'
 import { useNavigate } from 'react-router-dom'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
+import { useMutation } from 'react-query'
+import { loginCall } from 'services/api/requests'
 
 export const LoginScreen = () => {
   const navigate = useNavigate()
+  const toast = useToast()
+    const mutation = useMutation((newUser) => loginCall(newUser), {
+      onError: (error) => {
+        // console.log({ error })
+        toast({
+          title: 'Falha ao efetuar o login.',
+          description: error?.response?.data?.error || 'Por favor, tente novamente',
+          status: 'error',
+          duration: 3000,
+          isClosable: true,
+        })
+
+      },
+      onSuccess: () => {
+        // console.log({ data })
+        toast({
+          title: 'Login feito com sucesso',
+          status: 'success',
+          duration: 6000,
+          isClosable: true,
+        })
+        navigate('/home')
+      }
+    })
+
 
   // create formik => initialValues ... validationSchema ... onSubmit
   // handleSubmit no button
@@ -20,7 +47,8 @@ export const LoginScreen = () => {
       password: Yup.string().min(6, 'Senha deve ter ao menos 6 caracteres').required('Senha é obrigatorio.')
     }),
     onSubmit: (data) => {
-      console.log({ data })
+      // console.log({ data })
+      mutation.mutate(data)
     }
   })
   // console.log({ values, errors })
@@ -69,7 +97,14 @@ export const LoginScreen = () => {
                   <Flex mt='24px' w='100%' alignItems='flex-end' justifyContent='flex-end'>
                     <Link onClick = {() => navigate('/forgot-password')}> Forgot password</Link>
                   </Flex>
-                  <Button onClick={handleSubmit} mt='24px' mb='12px' >Login</Button>
+                  <Button
+                    isLoading={mutation.isLoading}
+                    onClick={handleSubmit}
+                    mt='24px'
+                    mb='12px'
+                  >
+                    Login
+                  </Button>
                   <Link.Action
                     onClick = {() => navigate('/signup')}
                     mt='8px'
