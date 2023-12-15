@@ -48,6 +48,7 @@ export const LoginScreen = () => {
                 >
                   <Text.ScreenTitle mt='48px'>Login</Text.ScreenTitle>
                   <Input
+                    type='email'
                     id='email'
                     name='email'
                     value={values.email}
