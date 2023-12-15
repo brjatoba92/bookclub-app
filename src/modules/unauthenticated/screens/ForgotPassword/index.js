@@ -21,7 +21,7 @@ export const ForgotPasswordScreen = () => {
         navigate('/reset-password')
       }
     })
-    console.log({ values, errors })
+    // console.log({ values, errors })
 
     return(
         <Flex w='100vw' h='100vh' flexDir='row'>
