@@ -1,11 +1,38 @@
-import { Flex, Image } from '@chakra-ui/react'
+import { Flex, Image, useToast } from '@chakra-ui/react'
 import { Text, Input, Button} from 'components'
 import { useNavigate } from 'react-router-dom'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
+import { useMutation } from 'react-query'
+import { forgotPasswordCall } from 'services/api/requests'
 
-export const ForgotPasswordScreen = () => {
+
+export const ForgotPasswordScreen = () => { // PROBLEMA NA ROTA
     const navigate = useNavigate()
+    const toast = useToast()
+    const mutation = useMutation((data) => forgotPasswordCall(data), {
+      onError: (error) => {
+        // console.log({ error })
+        toast({
+          title: 'Falha na requisição.',
+          description: error?.response?.data?.error || 'Por favor, tente novamente',
+          status: 'error',
+          duration: 3000,
+          isClosable: true,
+        })
+
+      },
+      onSuccess: () => {
+        // console.log({ data })
+        toast({
+          title: 'E-mail enviado com sucesso',
+          status: 'success',
+          duration: 6000,
+          isClosable: true,
+        })
+        navigate(`/reset-password?email=${values.email}`)
+      }
+    })
 
     const { handleSubmit, values, handleChange, errors} = useFormik({
       initialValues: {
@@ -18,7 +45,8 @@ export const ForgotPasswordScreen = () => {
       }),
       onSubmit: (data) => {
         // console.log({ data })
-        navigate('/reset-password')
+        // navigate('/reset-password')
+        mutation.mutate(data)
       }
     })
     // console.log({ values, errors })
@@ -56,7 +84,13 @@ export const ForgotPasswordScreen = () => {
                     onChange = {handleChange}
                     error={errors.email}
                   />
-                  <Button onClick={handleSubmit} mt='24px' >Next</Button>
+                  <Button
+                    isLoading={mutation.isLoading}
+                    onClick={handleSubmit}
+                    mt='24px'
+                  >
+                    Send
+                  </Button>
                 </Flex>
             </Flex>
             <Flex

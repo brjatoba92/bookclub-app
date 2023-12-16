@@ -1,11 +1,40 @@
-import { Flex, Image } from '@chakra-ui/react'
+import { Flex, Image, useToast } from '@chakra-ui/react'
 import { Text, Input, Link, Button} from 'components'
 import { useFormik } from 'formik'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import * as Yup from 'yup'
+import { useMutation } from 'react-query'
+import { resetPasswordCall } from 'services/api/requests'
 
 export const ResetPasswordScreen = () => {
   const navigate = useNavigate()
+  const [searchParams] = useSearchParams
+  // console.log({ email: searchParams.get('email') })
+  
+  const toast = useToast()
+    const mutation = useMutation((data) => resetPasswordCall(data), {
+      onError: (error) => {
+        // console.log({ error })
+        toast({
+          title: 'Falha na requisição.',
+          description: error?.response?.data?.error || 'Por favor, tente novamente',
+          status: 'error',
+          duration: 3000,
+          isClosable: true,
+        })
+
+      },
+      onSuccess: () => {
+        // console.log({ data })
+        toast({
+          title: 'Senha salva com sucesso',
+          status: 'success',
+          duration: 6000,
+          isClosable: true,
+        })
+        navigate('/')
+      }
+    })
 
   const { handleSubmit, values, handleChange, errors} = useFormik({
     initialValues: {
@@ -14,7 +43,7 @@ export const ResetPasswordScreen = () => {
       confirmPassword: '',
     },
     validationSchema: Yup.object({
-      token: Yup.string().length(4, 'O Token deve conter 4 caracteres').required('Token é obrigatório'),
+      token: Yup.string().length(6, 'O Token deve conter 6 caracteres').required('Token é obrigatório'),
       password: Yup.string().min(6, 'Senha deve ter ao menos 6 caracteres').required('Senha é obrigatorio.'),
       confirmPassword: Yup.string()
         .min(6, 'Conformar a senha deve ter ao menos 6 caracteres')
@@ -23,7 +52,12 @@ export const ResetPasswordScreen = () => {
     }),
     onSubmit: (data) => {
       // console.log({ data })
-      navigate('/')
+      // navigate('/')
+      mutation.mutate({
+        email: searchParams.get('email'),
+        token: data.token,
+        password: data.password
+      })
     }
   })
   // console.log({ values, errors })
@@ -56,10 +90,10 @@ export const ResetPasswordScreen = () => {
                     name='token'
                     value={values.token}
                     mt='24px'
-                    placeholder="Token"
+                    placeholder="Ex: 000000"
                     onChange = {handleChange}
                     error={errors.token}
-                    maxLenght={4}
+                    macLenght={6}
                   />
                   <Input.Password
                     id='password'
@@ -80,6 +114,7 @@ export const ResetPasswordScreen = () => {
                     error={errors.confirmPassword}
                   />
                   <Button
+                    isLoading={mutation.isLoading}
                     onClick={handleSubmit}
                     mt='24px'
                     mb='12px'
