@@ -6,5 +6,4 @@ export const colors = {
     grayLight: '#F2F1F1',
     background: '#FEFEFE',
     white: '#fff'
-
 }
