@@ -1,6 +1,6 @@
 import { Flex } from '@chakra-ui/react'
 // import { useSelector } from 'react-redux'
-import { NavBar } from 'components/organisms'
+import { NavBar, BookList } from 'components/organisms'
 import { useQuery } from 'react-query'
 import { getHightlightedBooks } from 'services/api/requests'
 
@@ -31,6 +31,7 @@ export const HomeScreen = () => {
                 borderRadius='24px'
               />
             </Flex>
+            <BookList data={data?.data} />
         </Flex>
     )
 }
