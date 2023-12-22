@@ -1,11 +1,53 @@
-import { Text } from 'components/atoms'
-import { Avatar, Menu, MenuList, MenuButton, MenuItem, Flex, Image } from '@chakra-ui/react'
+import { Text, MenuItem } from 'components/atoms'
+import { Avatar, Menu, MenuList, MenuButton, Flex} from '@chakra-ui/react'
 import { useSelector } from 'react-redux'
 import { ChevronDownIcon } from '@chakra-ui/icons'
+import { BsBookmarkStar, BsPersonCheckFill, BsShieldCheck } from 'react-icons/bs'
+import { BiLogOut, BiClipboard } from "react-icons/bi"
+import { HiOutlineDocumentText } from 'react-icons/hi'
 
 export const UserMenu = () => {
     const userStore = useSelector((state) => state.user)
     // console.log({ userStore })
+    const menuOptions = [{
+      id: 0,
+      icon: BsBookmarkStar,
+      text: 'Favoritos',
+      divider: false
+    },
+    {
+      id: 1,
+      icon: BsPersonCheckFill,
+      text: 'Dados pessoais',
+      divider: false
+    },
+    {
+      id: 2,
+      icon: BsShieldCheck,
+      text: 'Alterar senha',
+      divider: true
+    },
+    {
+      id: 3,
+      icon: HiOutlineDocumentText,
+      text: 'Termos de uso',
+      divider: false
+    },
+    {
+      id: 4,
+      icon: BiClipboard,
+      text: 'Politica de privacidade',
+      divider: true
+    },
+    {
+      id: 5,
+      icon: BiLogOut,
+      text: 'Logout',
+      divider: false
+    }
+  ]
+
+    
     return(
         <Menu>
             <MenuButton>
@@ -26,42 +68,10 @@ export const UserMenu = () => {
                 </Flex>
             </MenuButton>
             <MenuList>
-                <MenuItem>
-                  <Flex flexDir='row' alignItems='center' justifyContent='center'>
-                    <Image src='/imgs/icons/bookmark-outline.svg' alt='bookmark' boxSize='18px' mr='10px' />
-                    Favoritos
-                  </Flex>
-                </MenuItem>
-                <MenuItem>
-                  <Flex flexDir='row' alignItems='center' justifyContent='center'>
-                    <Image src='/imgs/icons/person-outline.svg' alt='bookmark' boxSize='18px' mr='10px' />
-                    Dados pessoais
-                  </Flex>
-                </MenuItem>
-                <MenuItem>
-                  <Flex flexDir='row' alignItems='center' justifyContent='center'>
-                    <Image src='/imgs/icons/shield-checkmark-outline.svg' alt='bookmark' boxSize='18px' mr='10px' />
-                    Alterar senha
-                  </Flex>
-                </MenuItem>
-                <MenuItem>
-                  <Flex flexDir='row' alignItems='center' justifyContent='center'>
-                    <Image src='/imgs/icons/document-text-outline.svg' alt='bookmark' boxSize='18px' mr='10px' />
-                    Termos de uso
-                  </Flex>
-                </MenuItem>
-                <MenuItem>
-                  <Flex flexDir='row' alignItems='center' justifyContent='center'>
-                    <Image src='/imgs/icons/clipboard-outline.svg' alt='bookmark' boxSize='18px' mr='10px' />
-                    Politica de provacidade
-                  </Flex>
-                </MenuItem>
-                <MenuItem>
-                  <Flex flexDir='row' alignItems='center' justifyContent='center'>
-                    <Image src='/imgs/icons/log-out-outline.svg' alt='bookmark' boxSize='18px' mr='10px' />
-                    Sair
-                  </Flex>
-                </MenuItem>
+              {menuOptions.map((item) => (
+                <MenuItem
+                  key={`menu_item_${item.id}`} {...item} />
+              ))}
             </MenuList>
         </Menu>
     )
