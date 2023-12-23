@@ -1,9 +1,10 @@
 import { Flex } from '@chakra-ui/react'
 import { Text } from 'components/atoms'
 
-export const CategoryCard = ({ id, name, selected }) => {
+export const CategoryCard = ({ onClick, name, selected }) => {
     return (
       <Flex
+        onClick={onClick}
         h='38px'
         px='14px'
         py='12px'
@@ -15,6 +16,7 @@ export const CategoryCard = ({ id, name, selected }) => {
         bg={selected ? 'brand.black' : 'brand.backgrond'}
         alignItems='center'
         justifyContent='center'
+        cursor='pointer'
       >
         <Text
           fontSize='14px'
