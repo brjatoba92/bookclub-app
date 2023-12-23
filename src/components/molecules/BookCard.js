@@ -8,22 +8,23 @@ export const BookCard = ({ cover_url, name, author }) => {
               backgroundImage={`url(${cover_url})`}
               backgroundSize='cover'
               backgroundPosition='center'
-              h='230px'
-              w='154px'
-              borderRadius='12px'
+              h={['180px','230px']}
+              w={['120px','154px']}
+              borderRadius={['8px','12px']}
             />
             <Text
               fontSize='12px'
               fontWeight='600'
-              mt='12px'
+              mt='8px'
+              textAlign='center'
+              noOflines={1}
             >
                 {name}
             </Text>
             <Text
               fontSize='10px'
-              fontWeight='500'
-              color='brand.grayDark'
               mt='6px'
+              textAlign='center'
             >
                 {author?.name}
             </Text>
