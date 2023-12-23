@@ -9,9 +9,12 @@ export const CategoryList = () => {
     const [selected, setSelected] = useState()
     const { data } = useQuery('category', getCategories)
     const booksQuery = useQuery(['booksById',selected], () => 
-      getBooksByCategory(selected)
+      getBooksByCategory(selected),
+      {
+        enabled: !!selected
+      }
     )
-    console.log({ booksQuery })
+    // console.log({ booksQuery })
 
     useEffect(()=> {
         if(!selected && data?.data){
