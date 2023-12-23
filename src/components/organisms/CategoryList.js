@@ -24,6 +24,7 @@ export const CategoryList = () => {
           mt='38px'
           paddingX={['24px', '48px', '80px', '112px']}
           flexDir='column'
+          h='400px'
         >
             <Text.ScreenTitle  >Categorias</Text.ScreenTitle>
             <Flex flexDir='row' mt='16px'>
@@ -31,11 +32,12 @@ export const CategoryList = () => {
                   <CategoryCard
                     key={`book_${item.id}`}
                     selected={selected === item.id}
+                    onClick={() => setSelected(item.id)}
                     {...item}
                   />
                 ))}
             </Flex>
-            <Flex flexDir='row'>
+            <Flex flexDir='row' mt='26px' paddingBottom='48px'>
                 {booksQuery?.data &&
                   booksQuery?.data?.data.map((item) => <BookCard key={`book_${item.id}`} {...item} />)}
             </Flex>
