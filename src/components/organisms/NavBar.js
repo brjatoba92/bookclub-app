@@ -12,12 +12,14 @@ export const NavBar = () => {
           paddingTop={['24px']}
         >
             <Image
-              w='160px'
+              w={['100px','160px']}
               h='48px'
               src='/imgs/logo.svg'
               alt='logo'
             />
-            <SearchBar />
+            <Flex display={['none', 'flex']}>
+              <SearchBar />
+            </Flex>
             <UserMenu />
         </Flex>
     )

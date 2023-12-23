@@ -53,17 +53,21 @@ export const UserMenu = () => {
             <MenuButton>
                 <Flex alignItems='center' justifyContent='center' flexDir='row'>
                     <Avatar
-                      size='md'
+                      w={['36px', '48px']}
+                      h={['36px', '48px']}
                       name={userStore?.user?.name}
                       src={userStore?.user?.avatar_url}
                       borderColor='brand.primary'
                       borderWidth='2px'
                       bg='brand.grayDark'
-                      mr='12px'
+                      mr={['6px','12px']}
                     />
-                    <Text maxLenght='40px' fontWeight='bold' fontSize='20px'>
-                      {userStore?.user?.name}
-                    </Text>
+                    <Flex display={['none', 'flex']}>
+                      <Text maxLenght='40px' fontWeight='bold'>
+                        {userStore?.user?.name}
+                      </Text>
+                    </Flex>
+                    
                     <ChevronDownIcon boxSize='24px' />
                 </Flex>
             </MenuButton>
