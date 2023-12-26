@@ -1,5 +1,5 @@
 import { Flex } from "@chakra-ui/react"
-import { Button, NavBar, Text } from "components"
+import { Button, NavBar, Text, CategoryList } from "components"
 import { useQuery } from "react-query"
 import { useParams } from "react-router-dom"
 import { getBookDetail } from "services/api/requests"
@@ -49,6 +49,7 @@ export const BookDetailScreen = () => {
                 <Button>Adicionar aos favoritos</Button>
               </Flex>
             </Flex>
+            <CategoryList title='Outros livros' categoryId={data?.data?.book?.category?.id}/>
         </Flex>
     )
 }
