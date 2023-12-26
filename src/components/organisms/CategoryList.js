@@ -5,8 +5,8 @@ import { CategoryCard, BookCard } from 'components/molecules'
 import { Text } from 'components/atoms'
 import { getCategories, getBooksByCategory } from 'services/api/requests'
 
-export const CategoryList = () => {
-    const [selected, setSelected] = useState()
+export const CategoryList = ({ title, categoryId }) => {
+    const [selected, setSelected] = useState(categoryId)
     const { data } = useQuery('category', getCategories)
     const booksQuery = useQuery(['booksById',selected], () => 
       getBooksByCategory(selected),
@@ -29,7 +29,7 @@ export const CategoryList = () => {
           flexDir='column'
           h='400px'
         >
-            <Text.ScreenTitle  >Categorias</Text.ScreenTitle>
+            <Text.ScreenTitle>{title || 'Categorias' }</Text.ScreenTitle>
             <Flex
               flexDir='row'
               mt='16px'
