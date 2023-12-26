@@ -30,26 +30,28 @@ export const CategoryList = ({ title, categoryId }) => {
           h='400px'
         >
             <Text.ScreenTitle>{title || 'Categorias' }</Text.ScreenTitle>
-            <Flex
-              flexDir='row'
-              mt='16px'
-              overflowX={['scroll', 'auto']}
-              overflowY='hidden'
-              css={{
-                '::-webkit-scrollbar': {
-                    display: 'none'
-                }
-              }}
-            >
-                {data?.data && data?.data?.map((item) => (
-                  <CategoryCard
-                    key={`book_${item.id}`}
-                    selected={selected === item.id}
-                    onClick={() => setSelected(item.id)}
-                    {...item}
-                  />
-                ))}
-            </Flex>
+            {!categoryId && (
+              <Flex
+                flexDir='row'
+                mt='16px'
+                overflowX={['scroll', 'auto']}
+                overflowY='hidden'
+                css={{
+                  '::-webkit-scrollbar': {
+                      display: 'none'
+                  }
+                }}
+              >
+                  {data?.data && data?.data?.map((item) => (
+                    <CategoryCard
+                      key={`book_${item.id}`}
+                      selected={selected === item.id}
+                      onClick={() => setSelected(item.id)}
+                      {...item}
+                    />
+                  ))}
+              </Flex>
+            )}
             <Flex
               flexDir='row'
               mt='26px'
