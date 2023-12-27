@@ -27,7 +27,7 @@ export const CategoryList = ({ title, categoryId }) => {
           mt='38px'
           paddingX={['24px', '48px', '80px', '112px']}
           flexDir='column'
-          h='400px'
+          h='520px'
         >
             <Text.ScreenTitle>{title || 'Categorias' }</Text.ScreenTitle>
             {!categoryId && (

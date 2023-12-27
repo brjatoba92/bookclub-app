@@ -5,7 +5,13 @@ import { useNavigate } from 'react-router-dom'
 export const BookCard = ({ id, cover_url, name, author }) => {
     const navigate = useNavigate()
     return (
-        <Flex flexDir='column' alignItems='center' justifyContent='center' mr='16px'>
+        <Flex
+          flexDir='column'
+          alignItems='center'
+          justifyContent='center'
+          mr='16px'
+          mb='16px'
+        >
             <Flex
               backgroundImage={`url(${cover_url})`}
               backgroundSize='cover'

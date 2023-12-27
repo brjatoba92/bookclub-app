@@ -1,4 +1,4 @@
-import { LoginScreen, RegisterScreen, ForgotPasswordScreen, ResetPasswordScreen  } from '../screens'
+import { LoginScreen, RegisterScreen, ForgotPasswordScreen, ResetPasswordScreen } from '../screens'
 
 export const unauthRoutes = [
     {
@@ -16,6 +16,5 @@ export const unauthRoutes = [
     {
         path: '/reset-password',
         element: <ResetPasswordScreen />
-    }
-
+    },
 ]
