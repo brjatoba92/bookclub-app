@@ -9,7 +9,7 @@ export const BookCard = ({ id, cover_url, name, author }) => {
           flexDir='column'
           alignItems='center'
           justifyContent='center'
-          mr='16px'
+          mr={['40px','16px']}
           mb='16px'
         >
             <Flex
@@ -23,6 +23,7 @@ export const BookCard = ({ id, cover_url, name, author }) => {
               onClick={() => navigate(`/book-detail/${id}`)}
             />
             <Text
+              maxWidth={['120px', '154px']}
               fontSize='12px'
               fontWeight='600'
               mt='8px'
