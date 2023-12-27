@@ -1,11 +1,12 @@
-import { Flex } from "@chakra-ui/react"
+import { Flex, useToast } from "@chakra-ui/react"
 import { Button, NavBar, Text, CategoryList } from "components"
-import { useQuery } from "react-query"
+import { useQuery, useMutation } from "react-query"
 import { useParams } from "react-router-dom"
-import { getBookDetail } from "services/api/requests"
+import { getBookDetail, addBookToFavorites } from "services/api/requests"
 
 
 export const BookDetailScreen = () => {
+    const toast = useToast()
     const { id } = useParams()
     const { data } = useQuery(
       ['bookDetail', id], 
@@ -14,6 +15,35 @@ export const BookDetailScreen = () => {
         enabled: !!id
       })
       console.log({ data })
+      const addFavoriteMutation = useMutation((data) => addBookToFavorites(data), {
+      onError: (error) => {
+        // console.log({ error })
+        toast({
+          title: 'Falha ao adicionar aos favoritos.',
+          description: error?.response?.data?.error || 'Por favor, tente novamente',
+          status: 'error',
+          duration: 3000,
+          isClosable: true,
+        })
+
+      },
+      onSuccess: () => {
+        // console.log({ data })
+        toast({
+          title: 'Livro adicionado aos favoritos com sucesso',
+          status: 'success',
+          duration: 6000,
+          isClosable: true,
+        })
+      }
+    })
+
+    const handleButtonClick = () => {
+      addFavoriteMutation.mutate({
+        book_id: id
+      })
+    }
+
     
     return (
         <Flex flexDir='column'>
@@ -46,7 +76,7 @@ export const BookDetailScreen = () => {
                 <Text mt='6px' fontSize='12px'>{data?.data?.book?.synopsis}</Text>
               </Flex>
               <Flex>
-                <Button>Adicionar aos favoritos</Button>
+                <Button onClick={() => handleButtonClick()}>Adicionar aos favoritos</Button>
               </Flex>
             </Flex>
             <CategoryList title='Outros livros' categoryId={data?.data?.book?.category?.id}/>
