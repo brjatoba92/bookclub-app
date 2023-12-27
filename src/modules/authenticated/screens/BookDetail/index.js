@@ -76,7 +76,9 @@ export const BookDetailScreen = () => {
                 <Text mt='6px' fontSize='12px'>{data?.data?.book?.synopsis}</Text>
               </Flex>
               <Flex>
-                <Button onClick={() => handleButtonClick()}>Adicionar aos favoritos</Button>
+                <Button secondary onClick={() => handleButtonClick()}>
+                  {data?.data?.favorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}
+                </Button>
               </Flex>
             </Flex>
             <CategoryList title='Outros livros' categoryId={data?.data?.book?.category?.id}/>
