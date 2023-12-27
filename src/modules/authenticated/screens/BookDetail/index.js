@@ -8,7 +8,7 @@ import { getBookDetail, addBookToFavorites, deleteBookFromFavorites } from "serv
 export const BookDetailScreen = () => {
     const toast = useToast()
     const { id } = useParams()
-    const { data, refetch } = useQuery(
+    const { data, refetch, isLoading } = useQuery(
       ['bookDetail', id], 
       () => getBookDetail(id),
       {
@@ -109,7 +109,11 @@ export const BookDetailScreen = () => {
               </Flex>
               <Flex>
                 <Button
-                  isLoading={addFavoriteMutation.isLoading}
+                  isLoading={ 
+                    isLoading || 
+                    addFavoriteMutation.isLoading || 
+                    removeFavoriteMutation.isLoading
+                  }
                   secondary={data?.data?.favorite}
                   onClick={() => handleButtonClick()}
                 >
