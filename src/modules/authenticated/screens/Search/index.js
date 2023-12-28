@@ -4,6 +4,7 @@ import { NavBar, Text } from 'components'
 
 export const SearchScreen = () => {
     const [query, setQuery] = useState('')
+    console.log({ query })
     return(
         <Flex flexDir='column'>
           <NavBar query={query} setQuery={setQuery}/>
