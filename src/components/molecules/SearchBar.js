@@ -1,4 +1,4 @@
-import { useState } from 'react'
+// import { useState } from 'react'
 import {
     Flex,
     Input,
@@ -8,10 +8,10 @@ import {
 import { SearchIcon } from '@chakra-ui/icons'
 import { useLocation, useNavigate } from 'react-router-dom'
 
-export const SearchBar = () => {
+export const SearchBar = ({ query, setQuery }) => {
     const navigate = useNavigate()
     const location = useLocation()
-    const [query, setQuery] = useState('')
+    // const [query, setQuery] = useState('')
     // console.log ({ query })
 
     const checkIfIsOnSearchScreen = () => {
@@ -28,8 +28,8 @@ export const SearchBar = () => {
               </InputLeftElement>
               <Input
                 onFocus={() => checkIfIsOnSearchScreen()}
-                value={query}
-                onChange={e =>setQuery(e.target.value)}
+                value={query || ''}
+                onChange={(e) => (setQuery ? setQuery(e.target.value) : {})}
                 w='100%'
                 h='100%'
                 fontSize='16px'
