@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Flex } from '@chakra-ui/react'
-import { NavBar, Text } from 'components'
+import { NavBar, Text, BookList } from 'components'
 import { searchQuery } from 'services/api/requests'
 import { useQuery } from 'react-query'
 
@@ -21,14 +21,20 @@ export const SearchScreen = () => {
           <NavBar query={query} setQuery={setQuery}/>
           <Flex
             flexDir='column'
-            alignItems='flex-start'
-            justifyContent='flex-start'
-            mt='48px'
+            alignItems={['center','flex-start']}
+            justifyContent={['center','flex-start']}
+            mt={['24px', '48px']}
             w='100%'
             maxW='100vw'
-            paddingX={['24px', '48px', '80px', '112px']}
+            
           >
-            <Text.ScreenTitle>Livros</Text.ScreenTitle>
+            <Flex paddingX={['24px', '48px', '80px', '112px']}>
+              <Text.ScreenTitle>Resultados de pesquisa</Text.ScreenTitle>
+            </Flex>
+            
+            <Flex w='100%' alignItems='flex-start' justifyContent='flex-start'>
+              <BookList title='Livros' data={data?.data?.books} isLoading={isLoading}/>
+            </Flex>
           </Flex>
         </Flex>
     )
