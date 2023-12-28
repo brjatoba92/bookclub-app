@@ -8,7 +8,7 @@ import { getCategories, getBooksByCategory } from 'services/api/requests'
 export const CategoryList = ({ title, categoryId }) => {
     const [selected, setSelected] = useState(categoryId)
     const { data } = useQuery('category', getCategories)
-    const booksQuery = useQuery(['booksById',selected], () => 
+    const { data: bookQuery, refetch } = useQuery(['booksById',selected], () => 
       getBooksByCategory(selected),
       {
         enabled: !!selected
@@ -21,6 +21,10 @@ export const CategoryList = ({ title, categoryId }) => {
             setSelected(data?.data[0].id)
         }
     }, [data])
+
+    useEffect(() => {
+      refetch()
+    }, [categoryId])
 
     return (
         <Flex
@@ -63,8 +67,8 @@ export const CategoryList = ({ title, categoryId }) => {
                 }
               }}
             >
-                {booksQuery?.data &&
-                  booksQuery?.data?.data.map((item) => <BookCard key={`book_${item.id}`} {...item} />)}
+                {bookQuery &&
+                  bookQuery?.data.map((item) => <BookCard key={`book_${item.id}`} {...item} />)}
             </Flex>
         </Flex>
     )
