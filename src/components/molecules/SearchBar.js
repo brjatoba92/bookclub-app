@@ -1,4 +1,4 @@
-// import { useState } from 'react'
+import { useState } from 'react'
 import {
     Flex,
     Input,
@@ -8,6 +8,8 @@ import {
 import { SearchIcon } from '@chakra-ui/icons'
 
 export const SearchBar = () => {
+    const [query, setQuery] = useState('')
+    console.log ({ query })
     return(
         <Flex w='478px' h='52px' bg='brand.grayLight' borderRadius='12px'>
             <InputGroup>
@@ -15,6 +17,8 @@ export const SearchBar = () => {
                 <SearchIcon color='brand.grayDark' />
               </InputLeftElement>
               <Input
+                value={query}
+                onChange={e =>setQuery(e.target.value)}
                 w='100%'
                 h='100%'
                 fontSize='16px'
