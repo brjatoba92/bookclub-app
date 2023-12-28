@@ -1,10 +1,21 @@
 import { useState } from 'react'
 import { Flex } from '@chakra-ui/react'
 import { NavBar, Text } from 'components'
+import { searchQuery } from 'services/api/requests'
+import { useQuery } from 'react-query'
 
 export const SearchScreen = () => {
     const [query, setQuery] = useState('')
-    console.log({ query })
+    const { data, refetch, isLoading } = useQuery(
+      ['search', query],
+      () => searchQuery(query), 
+      {
+        enabled: query.length >= 3
+      }
+    )
+    // console.log({ query })
+    console.log({ data })
+    
     return(
         <Flex flexDir='column'>
           <NavBar query={query} setQuery={setQuery}/>
