@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import { Flex } from '@chakra-ui/react'
-import { NavBar, Text, BookList } from 'components'
+import { NavBar, Text, BookList, AuthorList } from 'components'
 import { searchQuery } from 'services/api/requests'
 import { useQuery } from 'react-query'
 
 export const SearchScreen = () => {
     const [query, setQuery] = useState('')
-    const { data, refetch, isLoading } = useQuery(
+    const { data, isLoading } = useQuery(
       ['search', query],
       () => searchQuery(query), 
       {
@@ -32,8 +32,9 @@ export const SearchScreen = () => {
               <Text.ScreenTitle>Resultados de pesquisa</Text.ScreenTitle>
             </Flex>
             
-            <Flex w='100%' alignItems='flex-start' justifyContent='flex-start'>
+            <Flex w='100%' alignItems='flex-start' justifyContent='flex-start' flexDir='column'>
               <BookList title='Livros' data={data?.data?.books} isLoading={isLoading}/>
+              <AuthorList data={data?.data?.authors} isLoading={isLoading} />
             </Flex>
           </Flex>
         </Flex>
