@@ -27,8 +27,8 @@ export const BookList = ({ title, data, isLoading }) => {
                   </Flex>
                 )
               }
-              {!data ||
-                  (!isLoading && data?.length === 0 && (
+              {(!isLoading && data?.lenght === 0) ||
+                  (!data && (
                     <Flex alignItems='center' justifyContent='center' h='30px'>
                       <Text>Nenhum livro encontrado</Text>
                     </Flex>
