@@ -1,4 +1,3 @@
-// import { useState } from 'react'
 import {
     Flex,
     Input,
@@ -11,8 +10,6 @@ import { useLocation, useNavigate } from 'react-router-dom'
 export const SearchBar = ({ query, setQuery }) => {
     const navigate = useNavigate()
     const location = useLocation()
-    // const [query, setQuery] = useState('')
-    // console.log ({ query })
 
     const checkIfIsOnSearchScreen = () => {
       if(location.pathname !== '/search' ){

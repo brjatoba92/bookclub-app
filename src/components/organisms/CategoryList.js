@@ -15,7 +15,6 @@ export const CategoryList = ({ title, categoryId }) => {
         enabled: !!selected
       }
     )
-    // console.log({ booksQuery })
 
     useEffect(()=> {
         if(!selected && data?.data){

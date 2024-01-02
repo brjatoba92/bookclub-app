@@ -1,11 +1,8 @@
 import { Flex, Spinner } from '@chakra-ui/react'
 import { BookCard } from 'components/molecules'
 import { Text } from 'components/atoms'
-// import { useQuery } from 'react-query'
-// import { getHightlightedBooks } from 'services/api/requests'
 
 export const BookList = ({ title, data, isLoading }) => {
-    // const { data } = useQuery('highlighted', getHightlightedBooks)
     return (
         <Flex
           mt={['24px','48px']}

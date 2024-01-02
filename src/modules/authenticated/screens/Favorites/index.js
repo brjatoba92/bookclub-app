@@ -5,7 +5,6 @@ import { useQuery } from 'react-query'
 
 export const FavoritesScreen = () => {
     const { data } = useQuery('getFavorites', getFavorites)
-    console.log({data})
     return(
         <Flex flexDir='column'>
             <NavBar></NavBar>

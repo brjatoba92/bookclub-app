@@ -16,7 +16,6 @@ export const LoginScreen = () => {
   const toast = useToast()
     const mutation = useMutation((newUser) => loginCall(newUser), {
       onError: (error) => {
-        // console.log({ error })
         toast({
           title: 'Falha ao efetuar o login.',
           description: error?.response?.data?.error || 'Por favor, tente novamente',
@@ -27,7 +26,6 @@ export const LoginScreen = () => {
 
       },
       onSuccess: (data) => {
-        // console.log({ data })
         toast({
           title: 'Login feito com sucesso',
           status: 'success',
@@ -43,10 +41,6 @@ export const LoginScreen = () => {
       }
     })
 
-
-  // create formik => initialValues ... validationSchema ... onSubmit
-  // handleSubmit no button
-
   const { handleSubmit, values, handleChange, errors} = useFormik({
     initialValues: {
       email: '',
@@ -57,11 +51,9 @@ export const LoginScreen = () => {
       password: Yup.string().min(6, 'Senha deve ter ao menos 6 caracteres').required('Senha é obrigatorio.')
     }),
     onSubmit: (data) => {
-      // console.log({ data })
       mutation.mutate(data)
     }
   })
-  // console.log({ values, errors })
 
     return(
         <Flex w='100vw' h='100vh' flexDir='row'>

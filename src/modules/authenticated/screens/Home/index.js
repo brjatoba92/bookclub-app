@@ -1,12 +1,9 @@
 import { Flex } from '@chakra-ui/react'
-// import { useSelector } from 'react-redux'
 import { NavBar, BookList, CategoryList } from 'components/organisms'
 import { useQuery } from 'react-query'
 import { getHightlightedBooks } from 'services/api/requests'
 
 export const HomeScreen = () => {
-    // const userStore = useSelector((state) => state.user)
-    // console.log({ error, data })
     const { data, isLoading } = useQuery('highlighted', getHightlightedBooks)
 
     return (
