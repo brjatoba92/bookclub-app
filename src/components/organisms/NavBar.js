@@ -33,7 +33,8 @@ export const NavBar = ({ query, setQuery }) => {
               <SearchBar query={query} setQuery={setQuery} />
             </Flex>
             <UserMenu setShowModal={setShowModal} />
-            {showModal === 'user' && <UserModal onCloseModal={onCloseModal} />}
+
+            {showModal === 'user' && <UserModal onClose={onCloseModal} />}
         </Flex>
     )
 }

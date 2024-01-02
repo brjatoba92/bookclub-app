@@ -26,11 +26,15 @@ import {
           email: Yup.string().email('E-mail invalido').required('E-mail é obrigatorio.'),
         }),
         onSubmit: (data) => {
-          // console.log({ data })
         }
       })
     return(
-      <Drawer size='sm' isOpen={true} placement='right' onClose={onClose}>
+      <Drawer
+        size='sm'
+        isOpen={true}
+        placement='right'
+        onClose={onClose}
+      >
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
