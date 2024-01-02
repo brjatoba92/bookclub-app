@@ -9,12 +9,10 @@ import { resetPasswordCall } from 'services/api/requests'
 export const ResetPasswordScreen = () => {
   const navigate = useNavigate()
   const [searchParams] = useSearchParams
-  // console.log({ email: searchParams.get('email') })
   
   const toast = useToast()
     const mutation = useMutation((data) => resetPasswordCall(data), {
       onError: (error) => {
-        // console.log({ error })
         toast({
           title: 'Falha na requisição.',
           description: error?.response?.data?.error || 'Por favor, tente novamente',
@@ -25,7 +23,6 @@ export const ResetPasswordScreen = () => {
 
       },
       onSuccess: () => {
-        // console.log({ data })
         toast({
           title: 'Senha salva com sucesso',
           status: 'success',
@@ -51,8 +48,6 @@ export const ResetPasswordScreen = () => {
         .oneOf([Yup.ref('password'), null], 'Senhas não são iguais')
     }),
     onSubmit: (data) => {
-      // console.log({ data })
-      // navigate('/')
       mutation.mutate({
         email: searchParams.get('email'),
         token: data.token,
@@ -60,7 +55,6 @@ export const ResetPasswordScreen = () => {
       })
     }
   })
-  // console.log({ values, errors })
 
     return(
         <Flex w='100vw' h='100vh' flexDir='row'>
@@ -122,7 +116,6 @@ export const ResetPasswordScreen = () => {
                     Save
                   </Button>
                   <Link.Action
-                    // onClick = {() => navigate('/signup')}
                     mt='8px'
                     text='No have token? '
                     actionText='Click to resend'

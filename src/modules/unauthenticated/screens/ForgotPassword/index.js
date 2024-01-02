@@ -7,12 +7,11 @@ import { useMutation } from 'react-query'
 import { forgotPasswordCall } from 'services/api/requests'
 
 
-export const ForgotPasswordScreen = () => { // PROBLEMA NA ROTA
+export const ForgotPasswordScreen = () => {
     const navigate = useNavigate()
     const toast = useToast()
     const mutation = useMutation((data) => forgotPasswordCall(data), {
       onError: (error) => {
-        // console.log({ error })
         toast({
           title: 'Falha na requisição.',
           description: error?.response?.data?.error || 'Por favor, tente novamente',
@@ -23,7 +22,6 @@ export const ForgotPasswordScreen = () => { // PROBLEMA NA ROTA
 
       },
       onSuccess: () => {
-        // console.log({ data })
         toast({
           title: 'E-mail enviado com sucesso',
           status: 'success',
@@ -44,12 +42,9 @@ export const ForgotPasswordScreen = () => { // PROBLEMA NA ROTA
           .required('E-mail é obrigatorio.')
       }),
       onSubmit: (data) => {
-        // console.log({ data })
-        // navigate('/reset-password')
         mutation.mutate(data)
       }
     })
-    // console.log({ values, errors })
 
     return(
         <Flex w='100vw' h='100vh' flexDir='row'>

@@ -13,8 +13,6 @@ export const SearchScreen = () => {
         enabled: query.length >= 3
       }
     )
-    // console.log({ query })
-    console.log({ data })
     
     return(
         <Flex flexDir='column'>

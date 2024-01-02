@@ -14,11 +14,9 @@ export const BookDetailScreen = () => {
       {
         enabled: !!id
       })
-      console.log({ data })
 
       const addFavoriteMutation = useMutation((data) => addBookToFavorites(data), {
       onError: (error) => {
-        // console.log({ error })
         toast({
           title: 'Falha ao adicionar aos favoritos.',
           description: error?.response?.data?.error || 'Por favor, tente novamente',
@@ -30,7 +28,6 @@ export const BookDetailScreen = () => {
 
       },
       onSuccess: () => {
-        // console.log({ data })
         toast({
           title: 'Livro adicionado aos favoritos com sucesso',
           status: 'success',
@@ -43,7 +40,6 @@ export const BookDetailScreen = () => {
 
     const removeFavoriteMutation = useMutation((data) => deleteBookFromFavorites(data), {
       onError: (error) => {
-        // console.log({ error })
         toast({
           title: 'Falha ao deletar livro dos favoritos.',
           description: error?.response?.data?.error || 'Por favor, tente novamente',
@@ -55,7 +51,6 @@ export const BookDetailScreen = () => {
 
       },
       onSuccess: () => {
-        // console.log({ data })
         toast({
           title: 'Livro deletado dos favoritos com sucesso',
           status: 'success',

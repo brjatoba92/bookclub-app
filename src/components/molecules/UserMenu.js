@@ -10,7 +10,6 @@ import { useNavigate } from 'react-router-dom'
 export const UserMenu = ({setShowModal}) => {
     const userStore = useSelector((state) => state.user)
     const navigate = useNavigate()
-    // console.log({ userStore })
     const menuOptions = [{
       id: 0,
       icon: BsBookmarkStar,
