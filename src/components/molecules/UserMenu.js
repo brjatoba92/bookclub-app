@@ -7,7 +7,7 @@ import { BiLogOut, BiClipboard } from "react-icons/bi"
 import { HiOutlineDocumentText } from 'react-icons/hi'
 import { useNavigate } from 'react-router-dom'
 
-export const UserMenu = ({setShowModal}) => {
+export const UserMenu = ({setShowModal, onLogout}) => {
     const userStore = useSelector((state) => state.user)
     const navigate = useNavigate()
     const menuOptions = [{
@@ -36,21 +36,21 @@ export const UserMenu = ({setShowModal}) => {
       icon: HiOutlineDocumentText,
       text: 'Termos de uso',
       divider: false,
-      onClick: () => navigate('/favorites')
+      onClick: () => setShowModal('terms')
     },
     {
       id: 4,
       icon: BiClipboard,
       text: 'Politica de privacidade',
       divider: true,
-      onClick: () => setShowModal('privacy-policy')
+      onClick: () => setShowModal('privacy-policies')
     },
     {
       id: 5,
       icon: BiLogOut,
       text: 'Logout',
       divider: false,
-      onClick: () => navigate('/favorites')
+      onClick: () => onLogout()
     }
   ]
 
