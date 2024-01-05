@@ -39,6 +39,7 @@ import {
 
       },
       onSuccess: (data) => {
+        console.log({data})
         toast({
           title: 'Usuario atualizado com sucesso',
           status: 'success',
